@@ -1,0 +1,54 @@
+openapi: 3.0.0
+info:
+  title: openapi-starter
+  description: openapi starter
+  version: 1.0.0
+
+paths:
+  /message/{message_id}:
+    get:
+      summary: 'message取得'
+      tags:
+        - Video
+      operationId: fetch-message
+      parameters:
+        - $ref: '../components/parameters/auth-token.yml#/Parameter'
+        - $ref: '../components/parameters/message-id.yml#/Parameter'
+      responses:
+        '400':
+          $ref: '../components/errors/bad-request.yml#/Error'
+        '500':
+          $ref: '../components/errors/server-error.yml#/Error'
+        '200':
+          description: Expected response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  $ref: '../components/schemas/fetch-message.yml#/Schema'
+                example:
+                  $ref: '../components/examples/fetch-message.yml#/Example'
+    post:
+      summary: 'musicの投稿'
+      tags:
+        - Video
+      operationId: fetchVideo
+      parameters:
+        - $ref: '../components/parameters/auth-token.yml#/Parameter'
+      responses:
+        '400':
+          $ref: '../components/errors/bad-request.yml#/Error'
+        '500':
+          $ref: '../components/errors/server-error.yml#/Error'
+        '200':
+          description: Expected response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  $ref: '../components/schemas/dashboard/main.yml#/Schema'
+                example:
+                  $ref: '../components/examples/dashboard/main.yml#/Example'
+

@@ -1,0 +1,16 @@
+{
+  "name": "openapi-starter",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "swagger-cli bundle -r openapi.yml -o build/openapi.json",
+    "redoc": "npm run build && redoc-cli bundle openapi/build/openapi.json --options.menuToggle --options.pathInMiddlePanel  -o openapi/build/redoc-static.html",
+    "mock": "prism mock openapi/openapi.yml",
+    "ui": "docker run -p 8081:8080 -v $(pwd)/openapi:/usr/share/nginx/html/openapi -e API_URL=openapi/openapi.yml swaggerapi/swagger-ui"
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^1.0.1-4.1.3",
+    "@stoplight/prism-cli": "^3.1.1",
+    "redoc": "^2.0.0-rc.16",
+    "swagger-cli": "^2.3.2"
+  }
+}

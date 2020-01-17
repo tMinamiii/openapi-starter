@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        // OpenAPI (Swagger) Editor
+        "42crunch.vscode-openapi",
+        // OpenApi Designer
+        "philosowaffle.openapi-designer",
+        // YAML
+        "redhat.vscode-yaml",
+        // Prettier
+        "esbenp.prettier-vscode"
+    ]
+}
