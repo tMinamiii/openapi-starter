@@ -5,9 +5,9 @@ info:
   version: 1.0.0
 
 paths:
-  /message/{message_id}:
+  /message:
     get:
-      summary: 'message取得'
+      summary: 'message一覧取得'
       tags:
         - Video
       operationId: fetch-message
@@ -29,11 +29,37 @@ paths:
                   $ref: '../components/schemas/fetch-message.yml#/Schema'
                 example:
                   $ref: '../components/examples/fetch-message.yml#/Example'
-    post:
-      summary: 'musicの投稿'
+
+  /message/{message_id}:
+    get:
+      summary: 'message取得'
       tags:
         - Video
-      operationId: fetchVideo
+      operationId: message-detail
+      parameters:
+        - $ref: '../components/parameters/auth-token.yml#/Parameter'
+        - $ref: '../components/parameters/message-id.yml#/Parameter'
+      responses:
+        '400':
+          $ref: '../components/errors/bad-request.yml#/Error'
+        '500':
+          $ref: '../components/errors/server-error.yml#/Error'
+        '200':
+          description: Expected response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  $ref: '../components/schemas/fetch-message.yml#/Schema'
+                example:
+                  $ref: '../components/examples/fetch-message.yml#/Example'
+
+    post:
+      summary: 'メッセージの投稿'
+      tags:
+        - Video
+      operationId: post-message
       parameters:
         - $ref: '../components/parameters/auth-token.yml#/Parameter'
       responses:
@@ -48,7 +74,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  $ref: '../components/schemas/dashboard/main.yml#/Schema'
+                  $ref: '../components/schemas/post-music.yml#/Schema'
                 example:
-                  $ref: '../components/examples/dashboard/main.yml#/Example'
+                  $ref: '../components/examples/post-music.yml#/Example'
 
