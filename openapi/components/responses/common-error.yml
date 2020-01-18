@@ -1,5 +1,0 @@
-Response:
-  "400":
-    $ref: "../errors/bad-request.yml#/Error"
-  "500":
-    $ref: "../errors/server-error.yml#/Error"
