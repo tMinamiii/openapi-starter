@@ -1,0 +1,7 @@
+Parameter:
+  name: message_id
+  in: path
+  description: メッセージID
+  required: true
+  schema:
+    type: string

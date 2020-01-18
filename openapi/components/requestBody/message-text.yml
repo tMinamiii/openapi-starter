@@ -1,0 +1,10 @@
+Body:
+  description: メッセージ内容
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          message:
+            type: string

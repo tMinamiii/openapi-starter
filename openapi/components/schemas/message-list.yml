@@ -1,0 +1,15 @@
+Schema:
+  messages:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          description: メッセージID
+          type: int
+          fromat: int64
+          default: ""
+        message:
+          description: メッセージ
+          type: string
+          default: ""

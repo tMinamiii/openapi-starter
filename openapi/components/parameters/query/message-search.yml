@@ -1,0 +1,7 @@
+Parameter:
+  name: q
+  in: query
+  description: フリーワード検索
+  required: true
+  schema:
+    type: string

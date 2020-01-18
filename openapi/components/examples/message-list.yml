@@ -1,0 +1,8 @@
+Example:
+  messages:
+    - id: 1
+      message: メッセージ1
+    - id: 2
+      message: メッセージ2
+    - id: 3
+      message: メッセージ3

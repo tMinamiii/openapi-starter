@@ -1,0 +1,21 @@
+Schema:
+  type: object
+  properties:
+    id:
+      description: メッセージID
+      type: int
+      fromat: int64
+      default: ""
+    message:
+      description: メッセージ
+      type: string
+      default: ""
+    username:
+      description: 投稿者
+      type: string
+      default: ""
+    posted_at:
+      description: 投稿日
+      type: string
+      format: date-time
+      default: "2000/01/01 00:00:00"

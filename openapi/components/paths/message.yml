@@ -1,0 +1,140 @@
+Message:
+  get:
+    summary: "message一覧取得"
+    tags:
+      - message
+    operationId: message-list
+    parameters:
+      - $ref: "../parameters/header/auth-token.yml#/Parameter"
+    responses:
+      "400":
+        $ref: "../errors/bad-request.yml#/Error"
+      "500":
+        $ref: "../errors/server-error.yml#/Error"
+      "200":
+        description: Expected response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                $ref: "../schemas/message-list.yml#/Schema"
+              example:
+                $ref: "../examples/message-list.yml#/Example"
+MessageSearch:
+  get:
+    summary: "message検索"
+    tags:
+      - message
+    operationId: message-search
+    parameters:
+      - $ref: "../parameters/header/auth-token.yml#/Parameter"
+    responses:
+      "400":
+        $ref: "../errors/bad-request.yml#/Error"
+      "500":
+        $ref: "../errors/server-error.yml#/Error"
+      "200":
+        description: Expected response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                $ref: "../schemas/message-list.yml#/Schema"
+              example:
+                $ref: "../examples/message-list.yml#/Example"
+
+MessageResource:
+  get:
+    summary: "message取得"
+    tags:
+      - message
+    operationId: message-detail
+    parameters:
+      - $ref: "../parameters/header/auth-token.yml#/Parameter"
+      - $ref: "../parameters/path/message-id.yml#/Parameter"
+    responses:
+      "400":
+        $ref: "../errors/bad-request.yml#/Error"
+      "500":
+        $ref: "../errors/server-error.yml#/Error"
+      "200":
+        description: Expected response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                $ref: "../schemas/message-detail.yml#/Schema"
+              example:
+                $ref: "../examples/message-detail.yml#/Example"
+  post:
+    summary: "メッセージの新規投稿"
+    tags:
+      - message
+    operationId: message-post
+    parameters:
+      - $ref: "../parameters/header/auth-token.yml#/Parameter"
+      - $ref: "../parameters/path/message-id.yml#/Parameter"
+    responses:
+      "400":
+        $ref: "../errors/bad-request.yml#/Error"
+      "500":
+        $ref: "../errors/server-error.yml#/Error"
+      "200":
+        description: Expected response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                $ref: "../schemas/success.yml#/Schema"
+              example:
+                $ref: "../examples/success.yml#/Example"
+  put:
+    summary: "メッセージの編集"
+    tags:
+      - message
+    operationId: message-put
+    parameters:
+      - $ref: "../parameters/header/auth-token.yml#/Parameter"
+      - $ref: "../parameters/path/message-id.yml#/Parameter"
+    responses:
+      "400":
+        $ref: "../errors/bad-request.yml#/Error"
+      "500":
+        $ref: "../errors/server-error.yml#/Error"
+      "200":
+        description: Expected response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                $ref: "../schemas/success.yml#/Schema"
+              example:
+                $ref: "../examples/success.yml#/Example"
+  delete:
+    summary: "メッセージの投稿"
+    tags:
+      - message
+    operationId: message-delete
+    parameters:
+      - $ref: "../parameters/header/auth-token.yml#/Parameter"
+      - $ref: "../parameters/path/message-id.yml#/Parameter"
+    responses:
+      "400":
+        $ref: "../errors/bad-request.yml#/Error"
+      "500":
+        $ref: "../errors/server-error.yml#/Error"
+      "200":
+        description: Expected response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                $ref: "../schemas/success.yml#/Schema"
+              example:
+                $ref: "../examples/success.yml#/Example"

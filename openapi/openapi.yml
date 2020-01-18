@@ -1,0 +1,13 @@
+openapi: 3.0.0
+info:
+  title: openapi-starter
+  description: openapi starter
+  version: 1.0.0
+
+paths:
+  /message:
+    $ref: "./components/paths/message.yml#/Message"
+  /message/search:
+    $ref: "./components/paths/message.yml#/MessageSearch"
+  /message/{message_id}:
+    $ref: "./components/paths/message.yml#/MessageResource"
