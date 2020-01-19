@@ -7,7 +7,7 @@
 
 ## VSCodeではじめるOpenAPI - 1 ##
 
-**本記事はOpenAPI3.0を使用しています**
+本記事は**OpenAPI3.0**を使用しています
 
 最近のAPIドキュメント作成といえばOpenAPIですが、意外にもOpenAPIの開発環境やプラクティスに関する記事があまりありません。
 OpenAPIは素晴らしいツールなのですが、 APIの数を増やしていくと、あっという間に数千行のYAMLが誕生してしまいます。
@@ -151,15 +151,25 @@ $ref文の参照先が、なるべくが散らばらないようにし、APIを�
          +- schemas       各APIのスキーマ
 ```
 
-- openapi.ymlに新しいエンドポイントの一覧になります。openapi.ymlではエンドポイントを俯瞰しやすくするため、なるべく記述せず分割・参照します
-- components/pathsににはエンドポイントが処理するGET/POST/PUT/DELETEなどの記述をしていきます
-- 戻り値は複雑になりがちで行数が多くなるためpathsに書かずschemaとexampleに分割して参照します
-  - schemasには戻り値の構造を記述します
-  - examplesに戻り値の例を記述します
-- errors, requestBody, parametersは使います機会が多いので使いやすい粒度で分割しておきます
-  - parametersはheader, path, queryに分けています。これは同じパラメタ名がpathとquery両方に存在するケースがあり、間違えて参照しないよう分けています
+- `openapi.yml`に新しいエンドポイントの一覧になります。
+エンドポイントを俯瞰しやすくするため、なるべく記述せず分割・参照します
 
-実際にファイルを設置するとこのようになります。
+- `components`内にドキュメントの詳細を書いていきます。
+無理して使い回すのではなく、あくまで整理目的でcomponentsないに設置します。
+
+- components/pathsににはエンドポイントが処理するGET/POST/PUT/DELETEなどの記述をしていきます
+
+- `components/schema`には戻り値の構造を記述、components/exampleには戻り値の例を定義します
+戻り値なので再利用はほぼできませんが、戻り値の定義は複雑になりがちで行数が多くなるため、pathsには直接書かず分割・整理します
+
+`components/errors`, `components/requestBody`, `components/parameters`は再利用を意識して管理しておきます
+
+`components/parametersは`header`, `path`, `query`に分けています。
+- これは同じパラメタ名がpathとquery両方に存在するケースがあり、間違えて参照しないよう分けています
+
+
+上記を踏まえて実際にファイルを設置するとこのようになります
+
 [![Image from Gyazo](https://i.gyazo.com/776ea363e685ba2a9375f377e0aafbf1.png)](https://gyazo.com/776ea363e685ba2a9375f377e0aafbf1)
 
 ## まとめ ##
