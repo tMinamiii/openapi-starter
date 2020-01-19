@@ -5,7 +5,7 @@
 - `npm run mock` PrismでMockサーバーを建てる
 - `npm run ui` SwaggerUIサーバーを建てる
 
-## VSCodeではじめるOpenAPI - 1 ##
+## VSCodeでリファクタリング・保守するOpenAPI ##
 
 本記事は**OpenAPI3.0**を使用しています
 
@@ -131,8 +131,22 @@ prism mock openapi/openapi.yml
 使い回すという観点よりも**長期的にドキュメントを保守すること**を考えて末にたどり着いたディレクトリ構造です。
 
 OpenAPIは単一のファイルにまとめるとあっという間に数千行になります。
-単一ファイル内でcomponent化して再利用することもでいますが、$ref文はgoto文と同じなため、数千行スパゲッティコードと格闘することになります。
+単一ファイル内でcomponent化して再利用するサンプルをみかけますが、APIの数がふえていくと参照先が色々な所に飛散してしまいます。
+またcomponents分けをしたからといって行数が劇的に減るわけでもないので、$ref文が、悪名高いgoto文のようになってしまい数千行スパゲッティコードと格闘することになります。
 $ref文の参照先が、なるべくが散らばらないようにし、APIを追加するときは毎回同じ作業になるよう意識して分けました。
+
+### 整理のポイント ###
+
+ディレクトリ整理の際に自分が意識したポイントをまとめます
+
+- 再利用はあまり意識しない
+- 自分が編集しているAPIにのみ集中できるようにする(視界に他のAPIが入らないようにする)
+- 分割のデメリットはコードジャンプで補間する
+- API追加・編集作業をルーチン化できるように分ける
+- ディレクトリ名はキャメルケース、ファイル名はケバブケースに統一する
+- openapi.ymlはエンドポイント俯瞰のためにシンプルに保つ
+
+### 実例 ###
 
 ```text
 ./
@@ -151,24 +165,16 @@ $ref文の参照先が、なるべくが散らばらないようにし、APIを�
          +- schemas       各APIのスキーマ
 ```
 
-- `openapi.yml`に新しいエンドポイントの一覧になります。
-エンドポイントを俯瞰しやすくするため、なるべく記述せず分割・参照します
-
-- `components`内にドキュメントの詳細を書いていきます。
-無理して使い回すのではなく、あくまで整理目的でcomponentsないに設置します。
-
+- `openapi`ディレクトリに全ファイルをまとめておくとdockerでmountするときに便利です。
+- `openapi.yml`に新しいエンドポイントの一覧になります。エンドポイントを俯瞰しやすくするため、なるべく記述せず分割・参照します
+- `components`内にドキュメントの詳細を書いていきます。無理して使い回すのではなく、あくまで整理目的でcomponentsないに設置します。
 - components/pathsににはエンドポイントが処理するGET/POST/PUT/DELETEなどの記述をしていきます
-
-- `components/schema`には戻り値の構造を記述、components/exampleには戻り値の例を定義します
-戻り値なので再利用はほぼできませんが、戻り値の定義は複雑になりがちで行数が多くなるため、pathsには直接書かず分割・整理します
-
-`components/errors`, `components/requestBody`, `components/parameters`は再利用を意識して管理しておきます
-
-`components/parametersは`header`, `path`, `query`に分けています。
-- これは同じパラメタ名がpathとquery両方に存在するケースがあり、間違えて参照しないよう分けています
+- `components/schema`には戻り値の構造を記述、components/exampleには戻り値の例を定義します。戻り値なので再利用はほぼできませんが、戻り値の定義は複雑になりがちで行数が多くなるため、pathsには直接書かず分割・整理します
+- `components/errors`, `components/requestBody`, `components/parameters`は再利用を意識して管理しておきます
+- `components/parameters`はheader, path, queryに分けています。これは同じパラメタ名がpathとquery両方に存在するケースがあり、間違えて参照しないよう分けています
 
 
-上記を踏まえて実際にファイルを設置するとこのようになります
+上記を踏まえて実際にファイルを設置すると以下のようになります
 
 [![Image from Gyazo](https://i.gyazo.com/776ea363e685ba2a9375f377e0aafbf1.png)](https://gyazo.com/776ea363e685ba2a9375f377e0aafbf1)
 
