@@ -7,18 +7,18 @@
     "mock": "prism mock openapi/openapi.yml",
     "ui": "docker run -p 8081:8080 -v $(pwd)/openapi:/usr/share/nginx/html/openapi -e API_URL=openapi/openapi.yml swaggerapi/swagger-ui"
   },
-  "devDependencies": {
+  "dependencies": {
     "@stoplight/prism-cli": "^3.1.1",
     "redoc": "^2.0.0-rc.20",
     "redoc-cli": "^0.9.5",
-    "swagger-cli": "^2.3.2"
-  },
-  "dependencies": {
+    "swagger-cli": "^2.3.2",
     "io-ts-types": "^0.5.12",
     "mobx": "^6.0.4",
     "mobx-react": "^7.0.5",
     "mobx-react-lite": "^3.1.6",
     "monocle-ts": "^2.3.3",
-    "newtype-ts": "^0.3.4"
+    "newtype-ts": "^0.3.4",
+    "lodash": "^4.17.21",
+    "sanitize-html": "^2.3.2"
   }
 }
