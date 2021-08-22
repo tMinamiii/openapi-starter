@@ -8,7 +8,7 @@
     "ui": "docker run -p 8081:8080 -v $(pwd)/openapi:/usr/share/nginx/html/openapi -e API_URL=openapi/openapi.yml swaggerapi/swagger-ui"
   },
   "dependencies": {
-    "@stoplight/prism-cli": "3.3.7",
+    "@stoplight/prism-cli": "4.3.1",
     "redoc": "2.0.0-rc.55",
     "redoc-cli": "0.9.13",
     "swagger-cli": "2.3.5",
