@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@stoplight/prism-cli": "4.3.1",
-    "redoc": "2.0.0-rc.55",
+    "redoc": "2.0.0-rc.56",
     "redoc-cli": "0.9.13",
     "swagger-cli": "2.3.5",
     "io-ts-types": "0.5.16",
