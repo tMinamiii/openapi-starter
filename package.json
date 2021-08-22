@@ -18,7 +18,7 @@
     "mobx-react-lite": "^3.1.6",
     "monocle-ts": "^2.3.3",
     "newtype-ts": "^0.3.4",
-    "lodash": "^4.17.21",
+    "lodash": "4.17.21",
     "sanitize-html": "^2.3.2"
   }
 }
