@@ -11,7 +11,7 @@
     "@stoplight/prism-cli": "3.3.7",
     "redoc": "2.0.0-rc.55",
     "redoc-cli": "0.9.13",
-    "swagger-cli": "2.3.5",
+    "swagger-cli": "4.0.4",
     "io-ts-types": "0.5.16",
     "mobx": "6.3.2",
     "mobx-react": "7.2.0",
